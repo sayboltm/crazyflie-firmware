@@ -206,6 +206,9 @@ PROJ_OBJ += filter.o cpuid.o cfassert.o  eprintf.o crc.o num.o debug.o
 PROJ_OBJ += version.o FreeRTOS-openocd.o
 PROJ_OBJ_CF2 += configblockeeprom.o crc_bosch.o
 PROJ_OBJ_CF2 += sleepus.o
+# Added for crazycar
+PROJ_OBJ_CF2 += crazycar.o
+CFLAGS += -DDECK_FORCE=bcCrazycar
 
 # Libs
 PROJ_OBJ_CF2 += libarm_math.a
@@ -282,8 +285,8 @@ CFLAGS += -MD -MP -MF $(BIN)/dep/$(@).d -MQ $(@)
 #Permits to remove un-used functions and global variables from output file
 CFLAGS += -ffunction-sections -fdata-sections
 # Prevent promoting floats to doubles
-CFLAGS += -Wdouble-promotion
-
+#CFLAGS += -Wdouble-promotion
+# REMOVED FOR CRAZYCAR LOL
 
 ASFLAGS = $(PROCESSOR) $(INCLUDES)
 LDFLAGS = --specs=nano.specs $(PROCESSOR) -Wl,-Map=$(PROG).map,--cref,--gc-sections,--undefined=uxTopUsedPriority
@@ -403,3 +406,4 @@ include tools/make/targets.mk
 
 unit:
 	rake unit "DEFINES=$(CFLAGS)" "FILES=$(FILES)"
+
