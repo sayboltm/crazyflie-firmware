@@ -40,44 +40,48 @@ static int logIdRoll;
 static int logIdPitch;
 
 /* Template data for controlling the Skeleton bot */
-static char data[] = {'S', 'S', '0', '0', 0x0A};
+// static char data[] = {'S', 'S', '0', '0', 0x0A};
+// static char data[] = {0x00, 0x00, 0x00, 0x00, 0x0A};
+static char data[] = {0x00, 0x00, 0x0A};
 
 /* Create output string for sending to the Skeleton bot */
 void carSetControl(float roll, float pitch)
 {
-  float f = pitch / 30.0;
-  float t = roll / 60.0;
+  // float f = pitch / 30.0;
+  // float t = roll / 60.0;
 
-  float m1 = f + t;
-  float m2 = f - t;
+  // float m1 = f + t;
+  // float m2 = f - t;
 
-  if (m1 > 1.0)
-    m1 = 1.0;
-  if (m1 < -1)
-    m1 = -1;
+  // if (m1 > 1.0)
+  //   m1 = 1.0;
+  // if (m1 < -1)
+  //   m1 = -1;
 
-  if (m2 > 1.0)
-    m2 = 1.0;
-  if (m2 < -1)
-    m2 = -1;
+  // if (m2 > 1.0)
+  //   m2 = 1.0;
+  // if (m2 < -1)
+  //   m2 = -1;
 
-  if (m1 > 0)
-  {
-    data[0] = 'F';
-    data[2] = (int)(m1 * 10) + '0';
-  } else {
-    data[0] = 'B';
-    data[2] = (int)(m1 * -10) + '0';
-  }
+  // if (m1 > 0)
+  // {
+  //   data[0] = 'F';
+  //   data[2] = (int)(m1 * 10) + '0';
+  // } else {
+  //   data[0] = 'B';
+  //   data[2] = (int)(m1 * -10) + '0';
+  // }
 
-  if (m2 > 0)
-  {
-    data[1] = 'F';
-    data[3] = (int)(m2 * 10) + '0';
-  } else {
-    data[1] = 'B';
-    data[3] = (int)(m2 * -10) + '0';
-  }
+  // if (m2 > 0)
+  // {
+  //   data[1] = 'F';
+  //   data[3] = (int)(m2 * 10) + '0';
+  // } else {
+  //   data[1] = 'B';
+  //   data[3] = (int)(m2 * -10) + '0';
+  // }
+  data[0] = (int)(roll);
+  data[1] = (int)(pitch);
 }
 
 
